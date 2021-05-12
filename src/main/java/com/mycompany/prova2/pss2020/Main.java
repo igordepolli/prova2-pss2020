@@ -16,6 +16,11 @@ public class Main {
         images.add(new ProxyImage("Imagem3_10Mb.jpg"));
         images.add(new ProxyImage("Imagem4_10Mb.jpg"));
         images.add(new ProxyImage("Imagem5_10Mb.jpg"));
+        images.add(new ProxyImage("Imagem1_10Mb.jpg"));
+        images.add(new ProxyImage("Imagem2_10Mb.jpg"));
+        images.add(new ProxyImage("Imagem3_10Mb.jpg"));
+        images.add(new ProxyImage("Imagem4_10Mb.jpg"));
+        images.add(new ProxyImage("Imagem5_10Mb.jpg"));
         
         /*
         images.get(0).display();
