@@ -4,7 +4,6 @@ import com.mycompany.prova2.pss2020.model.IImage;
 import com.mycompany.prova2.pss2020.model.proxy.ProxyLocalImage;
 import com.mycompany.prova2.pss2020.model.proxy.ProxyWebImage;
 import com.mycompany.prova2.pss2020.view.ImageView;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +29,7 @@ public class ImagePresenter {
 
         view.setExtendedState(JFrame.MAXIMIZED_BOTH);
         view.setVisible(true);
-
+ 
         loadImages();
         loadButtonsInPanel();
         loadPanelAndScrollPane();
@@ -91,11 +90,13 @@ public class ImagePresenter {
 
     private void loadImage() throws Exception {
         String url = JOptionPane.showInputDialog(view, "Digite a URL:");
-        images.add(new ProxyWebImage(url));
 
-        cleanButtons();
-        loadButtonsInPanel();
-        loadPanelAndScrollPane();
+        if (url != null) {
+            images.add(new ProxyWebImage(url));
+
+            cleanPanel();
+            loadButtonsInPanel();
+        }
     }
 
     private void createListenersOfButtons() {
@@ -129,15 +130,12 @@ public class ImagePresenter {
         createListenersOfButtons();
     }
 
-    private void cleanButtons() {
-        for (Component component : view.getPnlImages().getComponents()) {
-            if (component instanceof JButton) {
-                view.getPnlImages().remove(component);
-            }
-        }
-
+    private void cleanPanel() {
+        view.getPnlImages().removeAll();
         view.getPnlImages().revalidate();
         view.getPnlImages().repaint();
+
+        jButtons.removeAll(jButtons);
     }
 
     public ImageView getView() {

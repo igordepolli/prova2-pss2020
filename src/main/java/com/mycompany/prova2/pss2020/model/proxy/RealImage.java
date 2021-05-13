@@ -1,6 +1,7 @@
 package com.mycompany.prova2.pss2020.model.proxy;
 
 import com.mycompany.prova2.pss2020.model.IImage;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,7 +16,12 @@ class RealImage implements IImage {
      
     @Override
     public void display(JLabel jLabel) {
-        jLabel.setIcon(new ImageIcon(image));
+        ImageIcon imageIcon = new ImageIcon(image);
+        Image image = imageIcon.getImage();
+        Image newImg = image.getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(newImg);
+        
+        jLabel.setIcon(imageIcon);
     }
     
     @Override
