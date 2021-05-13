@@ -29,7 +29,7 @@ public class ImagePresenter {
 
         view.setExtendedState(JFrame.MAXIMIZED_BOTH);
         view.setVisible(true);
- 
+
         loadImages();
         loadButtonsInPanel();
         loadPanelAndScrollPane();
@@ -92,10 +92,14 @@ public class ImagePresenter {
         String url = JOptionPane.showInputDialog(view, "Digite a URL:");
 
         if (url != null) {
-            images.add(new ProxyWebImage(url));
+            if (url.endsWith(".jpg") || url.endsWith(".png")) {
+                images.add(new ProxyWebImage(url));
 
-            cleanPanel();
-            loadButtonsInPanel();
+                cleanPanel();
+                loadButtonsInPanel();
+            } else {
+                throw new Exception("URL inválida! Só é permitidos links com final .png e .jpg");
+            }
         }
     }
 

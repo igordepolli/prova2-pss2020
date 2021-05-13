@@ -14,10 +14,10 @@ public class ProxyLocalImage implements IImage {
     public ProxyLocalImage(String fileName) throws Exception {
         this.fileName = fileName;
         realImage = new RealImage();
-        
+
         loadFromDisk();
     }
-    
+
     private void loadFromDisk() throws Exception {
         realImage.setImage(ImageIO.read(new File(fileName)));
     }
@@ -26,7 +26,7 @@ public class ProxyLocalImage implements IImage {
     public void display(JLabel jLabel) throws Exception {
         realImage.display(jLabel);
     }
-    
+
     @Override
     public void displayThumbnails(JButton jButton) throws Exception {
         realImage.displayThumbnails(jButton);

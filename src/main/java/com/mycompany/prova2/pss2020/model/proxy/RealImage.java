@@ -13,24 +13,29 @@ class RealImage implements IImage {
 
     public RealImage() {
     }
-     
+
     @Override
     public void display(JLabel jLabel) {
         ImageIcon imageIcon = new ImageIcon(image);
-        Image image = imageIcon.getImage();
-        Image newImg = image.getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), Image.SCALE_SMOOTH);
+        Image img = imageIcon.getImage();
+        Image newImg = img.getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(newImg);
-        
+
         jLabel.setIcon(imageIcon);
     }
-    
+
     @Override
     public void displayThumbnails(JButton jButton) throws Exception {
-        jButton.setIcon(new ImageIcon(image));
+        ImageIcon imageIcon = new ImageIcon(image);
+        Image img = imageIcon.getImage();
+        Image newImg = img.getScaledInstance(jButton.getWidth(), jButton.getHeight(), Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(newImg);
+
+        jButton.setIcon(imageIcon);
     }
-    
+
     protected void setImage(BufferedImage image) {
         this.image = image;
     }
-   
+
 }
