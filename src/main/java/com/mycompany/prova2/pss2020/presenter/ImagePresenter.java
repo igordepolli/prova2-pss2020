@@ -133,8 +133,4 @@ public class ImagePresenter {
         jButtons.removeAll(jButtons);
     }
 
-    public ImageView getView() {
-        return view;
-    }
-
 }
