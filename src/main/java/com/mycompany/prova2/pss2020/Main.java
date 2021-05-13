@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            ImagePresenter.getInstance();
+            new ImagePresenter();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

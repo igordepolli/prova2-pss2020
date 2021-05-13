@@ -16,12 +16,11 @@ import javax.swing.JScrollPane;
 
 public class ImagePresenter {
 
-    private static ImagePresenter instance = null;
     private final ImageView view;
     private final List<IImage> images;
     private final List<JButton> jButtons;
 
-    private ImagePresenter() throws Exception {
+    public ImagePresenter() throws Exception {
         view = new ImageView();
 
         images = new ArrayList<>();
@@ -34,14 +33,6 @@ public class ImagePresenter {
         loadButtonsInPanel();
         loadPanelAndScrollPane();
         initListeners();
-    }
-
-    public static ImagePresenter getInstance() throws Exception {
-        if (instance == null) {
-            instance = new ImagePresenter();
-        }
-
-        return instance;
     }
 
     private void initListeners() {
