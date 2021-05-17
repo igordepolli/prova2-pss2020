@@ -3,6 +3,8 @@ package com.mycompany.prova2.pss2020.model.proxy;
 import com.mycompany.prova2.pss2020.model.IImage;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,6 +12,7 @@ import javax.swing.JLabel;
 class RealImage implements IImage {
 
     private BufferedImage image;
+    private byte[] imageSize;
 
     public RealImage() {
     }
@@ -34,8 +37,21 @@ class RealImage implements IImage {
         jButton.setIcon(imageIcon);
     }
 
-    protected void setImage(BufferedImage image) {
-        this.image = image;
+    private boolean checkIfHasCacheImage(BufferedImage image) throws Exception {
+        return image != null && getImageSize(image) == imageSize;
+    }
+
+    private byte[] getImageSize(BufferedImage image) throws Exception {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", baos);
+        return baos.toByteArray();
+    }
+
+    protected void setImage(BufferedImage image) throws Exception {
+        if (!checkIfHasCacheImage(image)) {
+            this.image = image;
+            this.imageSize = getImageSize(image);
+        }
     }
 
 }
